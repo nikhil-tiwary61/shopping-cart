@@ -4,18 +4,24 @@
   border-radius: 5px;
   background: white;
   width: 250px;
+  height: 450px;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.container {
+.product-detail {
+  height: 100px;
   padding: 2px 16px;
 }
 
+.image {
+  height: 300px;
+}
 .product-image {
   border-radius: 5px 5px 0 0;
-  width: inherit;
+  width: 250px;
   height: inherit;
+  object-fit: contain;
 }
