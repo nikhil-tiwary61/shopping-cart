@@ -8,7 +8,7 @@ export default function Navbar() {
         <Link to="/">Shopping App</Link>
       </div>
       <nav>
-        <ul>
+        <ul className="route-links">
           <li>
             <Link to="/">Home</Link>
           </li>

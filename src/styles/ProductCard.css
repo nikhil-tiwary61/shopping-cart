@@ -3,8 +3,8 @@
   transition: 0.3s;
   border-radius: 5px;
   background: white;
-  width: 250px;
-  height: 450px;
+  width: 15em;
+  height: 23em;
 }
 
 .card:hover {
@@ -12,7 +12,7 @@
 }
 
 .product-detail {
-  height: 100px;
+  height: fit-content;
   padding: 2px 16px;
 }
 
@@ -24,4 +24,16 @@
   width: 250px;
   height: inherit;
   object-fit: contain;
+}
+
+.product-title,
+.product-price {
+  color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-price {
+  margin-top: 1em;
 }

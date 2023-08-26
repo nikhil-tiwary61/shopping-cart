@@ -19,11 +19,11 @@ export default function ProductListing() {
   return (
     <>
       <h1>Our Products</h1>
-      <div className="product-container">
+      <ul className="product-container">
         {products.map((product, index) => {
           return <ProductCard key={index} product={product} />;
         })}
-      </div>
+      </ul>
     </>
   );
 }
