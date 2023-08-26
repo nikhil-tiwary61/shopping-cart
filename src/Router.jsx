@@ -7,10 +7,12 @@ export default function Router() {
     {
       path: "/",
       element: <App />,
-    },
-    {
-      path: "products",
-      element: <ProductListing />,
+      children: [
+        {
+          path: "products",
+          element: <ProductListing />,
+        },
+      ],
     },
   ]);
 
