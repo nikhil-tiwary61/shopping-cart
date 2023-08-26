@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import Navbar from "./Navbar";
 
 export default function ProductListing() {
   const url = "https://fakestoreapi.com/products";
@@ -17,6 +18,7 @@ export default function ProductListing() {
   }, []);
   return (
     <>
+      <Navbar />
       <h1>Our Products</h1>
       <div>
         {products.map((product, index) => {
