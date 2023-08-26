@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Navbar from "./Navbar";
+import "../styles/ProductListing.css";
 
 export default function ProductListing() {
   const url = "https://fakestoreapi.com/products";
@@ -20,7 +21,7 @@ export default function ProductListing() {
     <>
       <Navbar />
       <h1>Our Products</h1>
-      <div>
+      <div className="product-container">
         {products.map((product, index) => {
           return <ProductCard key={index} product={product} />;
         })}

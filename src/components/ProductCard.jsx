@@ -8,8 +8,7 @@ export default function ProductCard({ product }) {
         <h4>
           <b>{product.title}</b>
         </h4>
-        <h4>{product.price}</h4>
-        <p>{product.description}</p>
+        <h4>${product.price}</h4>
       </div>
     </div>
   );
