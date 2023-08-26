@@ -1,4 +1,5 @@
 import "./App.css";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -7,10 +8,10 @@ function App() {
       <nav>
         <ul>
           <li>
-            <a href="">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="">Categories</a>
+            <Link>Categories</Link>
           </li>
         </ul>
       </nav>
