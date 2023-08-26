@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 function App() {
   return (
     <>
-      <h1>Welcome to shopping app</h1>
       <Navbar />
       <Outlet />
     </>

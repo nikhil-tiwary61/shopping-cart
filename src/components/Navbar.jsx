@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 
 export default function Navbar() {
   return (
-    <>
+    <header>
+      <div>
+        <Link to="/">Shopping App</Link>
+      </div>
       <nav>
         <ul>
           <li>
@@ -13,6 +17,6 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
-    </>
+    </header>
   );
 }
