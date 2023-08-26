@@ -4,7 +4,10 @@ import "../styles/ProductCard.css";
 export default function ProductCard({ product }) {
   return (
     <li className="card">
-      <Link to="productpage">
+      <Link
+        to={"productpage/" + product.id}
+        state={{ fromProductListing: { product } }}
+      >
         <div className="image">
           <img
             src={product.image}

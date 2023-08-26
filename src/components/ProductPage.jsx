@@ -1,3 +1,14 @@
+import { useLocation } from "react-router-dom";
+
 export default function ProductPage() {
-  return <h1>hello</h1>;
+  const location = useLocation();
+  const { fromProductListing } = location.state;
+  let product = fromProductListing.product;
+  console.log(product);
+
+  return (
+    <div className="product-page">
+      <p>{product.title}</p>
+    </div>
+  );
 }

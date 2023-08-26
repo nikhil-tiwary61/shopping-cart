@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import "../styles/ProductListing.css";
 
-export default function ProductListing() {
+function ProductListing() {
   const url = "https://fakestoreapi.com/products";
   const [products, setProducts] = useState([]);
 
@@ -14,7 +14,6 @@ export default function ProductListing() {
 
   useEffect(() => {
     fetchData();
-    console.log(products);
   }, []);
   return (
     <>
@@ -27,3 +26,6 @@ export default function ProductListing() {
     </>
   );
 }
+
+export default ProductListing;
+export { fetchData };
