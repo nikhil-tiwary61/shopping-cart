@@ -1,16 +1,28 @@
-async function fetchProducts() {
-  //   const url = "https://fakestoreapi.com/products";
-  //   const response = await fetch(url);
-  //   const data = await response.json();
-  //   return data;
-}
-const products = fetchProducts();
-console.log(products);
+import { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
 
 export default function ProductListing() {
+  const url = "https://fakestoreapi.com/products";
+  const [products, setProducts] = useState([]);
+
+  function fetchData() {
+    return fetch(url)
+      .then((response) => response.json())
+      .then((response) => setProducts(response));
+  }
+
+  useEffect(() => {
+    fetchData();
+    console.log(products);
+  }, []);
   return (
     <>
       <h1>Our Products</h1>
+      <div>
+        {products.map((product, index) => {
+          return <ProductCard key={index} product={product} />;
+        })}
+      </div>
     </>
   );
 }
