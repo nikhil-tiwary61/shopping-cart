@@ -1,11 +1,18 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "./src/App";
+import App from "./App";
+import ProductListing from "./components/ProductListing";
 
 export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
+      children: [
+        {
+          path: "products",
+          element: <ProductListing />,
+        },
+      ],
     },
   ]);
 

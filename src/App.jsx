@@ -1,5 +1,5 @@
 import "./App.css";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -11,10 +11,11 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link>Categories</Link>
+            <Link to="products">Products</Link>
           </li>
         </ul>
       </nav>
+      <Outlet />
     </>
   );
 }
