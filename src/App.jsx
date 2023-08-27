@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-function App() {
+function App({ cartQuantity }) {
   return (
     <>
-      <Navbar />
+      <Navbar cartQuantity={cartQuantity} />
       <Outlet />
       <Footer />
     </>

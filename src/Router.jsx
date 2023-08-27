@@ -28,7 +28,7 @@ export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App />,
+      element: <App cartQuantity={cartQuantity} />,
       children: [
         { index: true, element: <HomePage /> },
         { path: "products", element: <ProductListing /> },

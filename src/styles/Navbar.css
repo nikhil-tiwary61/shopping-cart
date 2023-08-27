@@ -19,3 +19,11 @@ header > div,
 ul {
   list-style: none;
 }
+
+.cart-quantity {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 1.5em;
+}
