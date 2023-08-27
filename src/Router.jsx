@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
+import HomePage from "./components/HomePage";
 import ProductListing from "./components/ProductListing";
 import ProductPage from "./components/ProductPage";
 import Cart from "./components/Cart";
@@ -29,6 +30,7 @@ export default function Router() {
       path: "/",
       element: <App />,
       children: [
+        { index: true, element: <HomePage /> },
         { path: "products", element: <ProductListing /> },
         {
           path: "cart",
