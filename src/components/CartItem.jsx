@@ -2,7 +2,7 @@ import "../styles/CartItem.css";
 
 export default function CartItem({ cartItem, key }) {
   return (
-    <div key={key} className="cart-item-tile">
+    <div className="cart-item-tile">
       <div className="cart-item-image-box">
         <img
           src={cartItem.image}
@@ -13,6 +13,7 @@ export default function CartItem({ cartItem, key }) {
       <div className="cart-item-details">
         <p>{cartItem.title}</p>
         <p>${cartItem.price}</p>
+        <p>Quantity: {cartItem.quantity}</p>
       </div>
     </div>
   );

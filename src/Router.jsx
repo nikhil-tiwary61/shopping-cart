@@ -7,11 +7,14 @@ import { useState } from "react";
 
 export default function Router() {
   const [cart, setCart] = useState([]);
+  const [cartQuantity, setCartQuantity] = useState(0);
+  const [amount, setAmount] = useState(0);
 
   function handleClick(product, quantity) {
     if (quantity == 0) return;
     setCart([...cart, { ...product, quantity: quantity }]);
-    console.log(cart);
+    setAmount(amount + quantity * parseInt(product.price));
+    setCartQuantity(cartQuantity + quantity);
   }
 
   const router = createBrowserRouter([
@@ -20,7 +23,12 @@ export default function Router() {
       element: <App />,
       children: [
         { path: "products", element: <ProductListing /> },
-        { path: "cart", element: <Cart cart={cart} /> },
+        {
+          path: "cart",
+          element: (
+            <Cart cart={cart} cartQuantity={cartQuantity} amount={amount} />
+          ),
+        },
         {
           path: "/products/productpage/:id",
           element: <ProductPage handleClick={handleClick} />,
