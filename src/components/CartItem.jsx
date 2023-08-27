@@ -1,6 +1,6 @@
 import "../styles/CartItem.css";
 
-export default function CartItem({ cartItem, key }) {
+export default function CartItem({ cartItem }) {
   return (
     <div className="cart-item-tile">
       <div className="cart-item-image-box">

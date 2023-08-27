@@ -8,12 +8,12 @@ import { useState } from "react";
 export default function Router() {
   const [cart, setCart] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(0);
-  const [amount, setAmount] = useState(0);
+  const [cartAmount, setCartAmount] = useState(0);
 
   function handleClick(product, quantity) {
     if (quantity == 0) return;
     setCart([...cart, { ...product, quantity: quantity }]);
-    setAmount(amount + quantity * parseInt(product.price));
+    setCartAmount(cartAmount + quantity * parseFloat(product.price).toFixed(2));
     setCartQuantity(cartQuantity + quantity);
   }
 
@@ -26,7 +26,11 @@ export default function Router() {
         {
           path: "cart",
           element: (
-            <Cart cart={cart} cartQuantity={cartQuantity} amount={amount} />
+            <Cart
+              cart={cart}
+              cartQuantity={cartQuantity}
+              cartAmount={cartAmount}
+            />
           ),
         },
         {
