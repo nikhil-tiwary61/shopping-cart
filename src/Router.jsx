@@ -13,8 +13,15 @@ export default function Router() {
   function handleClick(product, quantity) {
     if (quantity == 0) return;
     setCart([...cart, { ...product, quantity: quantity }]);
-    setCartAmount(cartAmount + quantity * parseFloat(product.price).toFixed(2));
+    setCartAmount(cartAmount + quantity * parseFloat(product.price));
     setCartQuantity(cartQuantity + quantity);
+  }
+
+  function handleRemoveFromCart(product) {
+    let productsLeft = cart.filter((cartItem) => cartItem.id != product.id);
+    setCart([...productsLeft]);
+    setCartQuantity(cartQuantity - product.quantity);
+    setCartAmount(cartAmount - product.quantity * parseFloat(product.price));
   }
 
   const router = createBrowserRouter([
@@ -30,6 +37,7 @@ export default function Router() {
               cart={cart}
               cartQuantity={cartQuantity}
               cartAmount={cartAmount}
+              handleRemoveFromCart={handleRemoveFromCart}
             />
           ),
         },

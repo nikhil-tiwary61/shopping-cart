@@ -1,6 +1,6 @@
 import "../styles/CartItem.css";
 
-export default function CartItem({ cartItem }) {
+export default function CartItem({ cartItem, handleRemoveFromCart }) {
   return (
     <div className="cart-item-tile">
       <div className="cart-item-image-box">
@@ -15,6 +15,9 @@ export default function CartItem({ cartItem }) {
         <p>${cartItem.price}</p>
         <p>Quantity: {cartItem.quantity}</p>
       </div>
+      <button onClick={() => handleRemoveFromCart(cartItem)}>
+        Remove from cart
+      </button>
     </div>
   );
 }
