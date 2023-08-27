@@ -1,0 +1,54 @@
+.product-page {
+  display: flex;
+  justify-content: center;
+}
+.product-page-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 50em;
+}
+
+.product-page-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.product-page-image {
+  height: 25em;
+  width: 25em;
+}
+.product-page-image > img {
+  height: 90%;
+  width: 90%;
+  object-fit: contain;
+}
+
+.product-page-actions {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  height: fit-content;
+  padding: 1em;
+}
+
+.product-page-title,
+.product-page-price,
+.product-page-rating {
+  text-align: justify;
+}
+
+/* To hide the increment/decrement arrows in input field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
