@@ -6,6 +6,7 @@ import ProductListing from "./components/ProductListing";
 import ProductPage from "./components/ProductPage";
 import Cart from "./components/Cart";
 import { useState } from "react";
+import ErrorPage from "./components/ErrorPage";
 
 export default function Router() {
   const [cart, setCart] = useState([]);
@@ -30,6 +31,7 @@ export default function Router() {
     {
       path: "/",
       element: <App cartQuantity={cartQuantity} />,
+      errorElement: <ErrorPage />,
       children: [
         { index: true, element: <HomePage /> },
         { path: "about", element: <About /> },
