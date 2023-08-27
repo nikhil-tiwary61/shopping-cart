@@ -1,0 +1,6 @@
+.cart-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 5em;
+  gap: 1em;
+}
