@@ -2,7 +2,7 @@ import "../styles/ProductPage.css";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-export default function ProductPage() {
+export default function ProductPage({ handleClick }) {
   const location = useLocation();
   const { fromProductListing } = location.state;
   let product = fromProductListing.product;
@@ -42,7 +42,9 @@ export default function ProductPage() {
                 <button onClick={() => handleIncrement(quantity)}>+</button>
               </div>
               <div className="add-to-cart-button-box">
-                <button>Add to cart</button>
+                <button onClick={() => handleClick(product, quantity)}>
+                  Add to cart
+                </button>
               </div>
             </div>
           </div>
