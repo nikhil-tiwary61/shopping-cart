@@ -11,9 +11,9 @@ export default function CartItem({ cartItem, handleRemoveFromCart }) {
         />
       </div>
       <div className="cart-item-details">
-        <p>{cartItem.title}</p>
-        <p>${cartItem.price}</p>
-        <p>Quantity: {cartItem.quantity}</p>
+        <h3 className="truncate">{cartItem.title}</h3>
+        <p className="truncate">${cartItem.price}</p>
+        <p className="truncate">Quantity: {cartItem.quantity}</p>
       </div>
       <button onClick={() => handleRemoveFromCart(cartItem)}>
         Remove from cart
