@@ -31,15 +31,19 @@ export default function ProductPage() {
               Rating: {product.rating.rate} Star
             </div>
             <div className="add-to-cart-box">
-              <button onClick={() => handleDecrement(quantity)}>-</button>
-              <input
-                type="number"
-                min={0}
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-              />
-              <button onClick={() => handleIncrement(quantity)}>+</button>
-              <button onClick={() => handleClick(quantity)}>Add to cart</button>
+              <div className="quantity">
+                <button onClick={() => handleDecrement(quantity)}>-</button>
+                <input
+                  type="number"
+                  min={0}
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+                <button onClick={() => handleIncrement(quantity)}>+</button>
+              </div>
+              <div className="add-to-cart-button-box">
+                <button>Add to cart</button>
+              </div>
             </div>
           </div>
         </div>
