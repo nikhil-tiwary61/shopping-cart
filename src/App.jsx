@@ -8,7 +8,6 @@ function App({ cartQuantity }) {
     <>
       <Navbar cartQuantity={cartQuantity} />
       <Outlet />
-      <Footer />
     </>
   );
 }
