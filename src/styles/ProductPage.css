@@ -33,12 +33,11 @@
   height: fit-content;
   padding: 1em;
   gap: 1em;
+  width: 22em;
 }
 
-.product-page-title,
-.product-page-price,
-.product-page-rating {
-  text-align: justify;
+.text-align-left {
+  text-align: left;
 }
 
 /* To hide the increment/decrement arrows in input field */
@@ -71,4 +70,8 @@ input[type="number"] {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   padding: 2em;
+}
+
+.product-page-description {
+  margin-bottom: 5em;
 }

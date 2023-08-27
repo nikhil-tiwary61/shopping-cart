@@ -25,9 +25,11 @@ export default function ProductPage({ handleClick }) {
             <img src={product.image} alt="Product Image" />
           </div>
           <div className="product-page-actions">
-            <div className="product-page-title">{product.title}</div>
-            <div className="product-page-price">${product.price}</div>
-            <div className="product-page-rating">
+            <h3 className="text-align-left">
+              <b>{product.title}</b>
+            </h3>
+            <div className="text-align-left">${product.price}</div>
+            <div className="text-align-left">
               Rating: {product.rating.rate} Star
             </div>
             <div className="add-to-cart-box">
@@ -50,8 +52,8 @@ export default function ProductPage({ handleClick }) {
           </div>
         </div>
         <hr />
-        <div className="product-page-description">
-          <h4>Details:</h4>
+        <div className="product-page-description text-align-left">
+          <h4>Description:</h4>
           <p>{product.description}</p>
         </div>
       </div>
