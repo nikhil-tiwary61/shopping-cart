@@ -5,7 +5,7 @@ export default function Navbar({ cartQuantity }) {
   return (
     <header>
       <div>
-        <Link to="/">Shopping App</Link>
+        <Link to="/">Shopping Cart</Link>
       </div>
       <nav>
         <ul className="route-links">
