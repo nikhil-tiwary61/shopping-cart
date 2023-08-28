@@ -75,3 +75,17 @@ input[type="number"] {
 .product-page-description {
   margin-bottom: 5em;
 }
+
+@media only screen and (max-width: 426px) {
+  .product-page-body {
+    width: 90%;
+  }
+  .product-page-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-page-actions,
+  .product-page-image {
+    width: 80%;
+  }
+}
