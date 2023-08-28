@@ -14,7 +14,8 @@ export default function Router() {
   const [cartAmount, setCartAmount] = useState(0);
 
   function handleClick(product, quantity) {
-    if (quantity == 0) return;
+    if (quantity == 0) alert("Quantity not selected");
+    if (quantity > product.rating.count) alert("Limited stock available");
     setCart([...cart, { ...product, quantity: quantity }]);
     setCartAmount(cartAmount + quantity * parseFloat(product.price));
     setCartQuantity(cartQuantity + quantity);
