@@ -17,7 +17,7 @@ export default function Router() {
     if (quantity == 0) alert("Quantity not selected");
     if (quantity > product.rating.count) alert("Limited stock available");
     setCart([...cart, { ...product, quantity: quantity }]);
-    setCartAmount(cartAmount + quantity * parseFloat(product.price));
+    setCartAmount(cartAmount + quantity * product.price);
     setCartQuantity(cartQuantity + quantity);
   }
 
@@ -25,7 +25,7 @@ export default function Router() {
     let productsLeft = cart.filter((cartItem) => cartItem.id != product.id);
     setCart([...productsLeft]);
     setCartQuantity(cartQuantity - product.quantity);
-    setCartAmount(cartAmount - product.quantity * parseFloat(product.price));
+    setCartAmount(cartAmount - product.quantity * product.price);
   }
 
   const router = createBrowserRouter([
