@@ -27,8 +27,9 @@
   white-space: nowrap;
 }
 
-/* @media (max-width: 424px) {
-  .cart-item-details {
-    width: 4em;
+@media only screen and (max-width: 320px) {
+  .cart-item-tile {
+    justify-content: center;
+    gap: 8px;
   }
-} */
+}
