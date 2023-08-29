@@ -1,5 +1,5 @@
 import "../styles/ProductPage.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function ProductPage({ handleClick }) {
@@ -48,6 +48,9 @@ export default function ProductPage({ handleClick }) {
                   Add to cart
                 </button>
               </div>
+            </div>
+            <div className="continue-shopping">
+              <Link to="/products">Continue Shopping</Link>
             </div>
           </div>
         </div>
