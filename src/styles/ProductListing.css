@@ -9,8 +9,3 @@
 .product-page-heading {
   margin-bottom: 0.5em;
 }
-@media only screen and (max-width: 320px) {
-  .product-page-heading {
-    font-size: 2.7;
-  }
-}

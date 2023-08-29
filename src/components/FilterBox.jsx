@@ -1,3 +1,5 @@
+import "../styles/FilterBox.css";
+
 export default function FilterBox({ handleFilter, handleApplyFilters }) {
   const categories = [
     "men's clothing",
@@ -6,7 +8,7 @@ export default function FilterBox({ handleFilter, handleApplyFilters }) {
     "women's clothing",
   ];
   return (
-    <div>
+    <div className="filter-box">
       {categories.map((category, index) => {
         return (
           <label htmlFor={category} key={index}>
@@ -14,6 +16,7 @@ export default function FilterBox({ handleFilter, handleApplyFilters }) {
               type="checkbox"
               id={category}
               value={category}
+              className="checkbox"
               onChange={(e) => handleFilter(e)}
             />
             {category}
