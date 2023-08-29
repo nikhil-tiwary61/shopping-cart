@@ -57,7 +57,7 @@ export default function ProductListing() {
 
   return (
     <>
-      <h1>Our Products</h1>
+      <h1 className="product-page-heading">Our Products</h1>
       <SearchBar
         changeProcessedProducts={changeProcessedProducts}
         changeReset={changeReset}
