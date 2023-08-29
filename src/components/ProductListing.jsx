@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import "../styles/ProductListing.css";
 import SearchBar from "./SearchBar";
+import FilterBox from "./FilterBox";
 
 export default function ProductListing() {
   const url = "https://fakestoreapi.com/products";
   const [products, setProducts] = useState([]);
   const [processedProducts, setProcessedProducts] = useState([]);
   const [searchAll, setSearchAll] = useState(true);
+  const [filterTags, setFilterTags] = useState([]);
 
   function fetchData() {
     return fetch(url)
@@ -34,13 +36,15 @@ export default function ProductListing() {
   }
 
   //Filter Feature
-  const [filterTags, setFilterTags] = useState([]);
   function handleFilter(e) {
     e.target.checked
       ? setFilterTags([...filterTags, e.target.value])
       : setFilterTags(
           filterTags.filter((filterTag) => filterTag !== e.target.value)
         );
+  }
+
+  function handleApplyFilters() {
     filterTags.length > 0 ? setSearchAll(false) : setSearchAll(true);
     setProcessedProducts(
       products.filter((product) => {
@@ -58,17 +62,10 @@ export default function ProductListing() {
         changeProcessedProducts={changeProcessedProducts}
         changeReset={changeReset}
       />
-      <fieldset>
-        <label htmlFor="mens'clothing">
-          <input
-            type="checkbox"
-            id="mens'clothing"
-            value="men's clothing"
-            onChange={(e) => handleFilter(e)}
-          />
-          Men&apos;s Clothing
-        </label>
-      </fieldset>
+      <FilterBox
+        handleFilter={handleFilter}
+        handleApplyFilters={handleApplyFilters}
+      />
       <ul className="product-container">
         {searchAll
           ? products.map((product, index) => {
