@@ -1,3 +1,4 @@
+import "../styles/SearchBar.css";
 import { useState } from "react";
 
 export default function SearchBar({ changeProcessedProducts, changeReset }) {
@@ -16,6 +17,7 @@ export default function SearchBar({ changeProcessedProducts, changeReset }) {
         type="text"
         value={searchInput}
         placeholder="Search"
+        className="search-box"
         onChange={(e) => handleChange(e)}
       />
       <button onClick={changeReset}>Reset</button>

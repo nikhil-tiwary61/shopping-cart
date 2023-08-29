@@ -6,23 +6,21 @@ export default function FilterBox({ handleFilter, handleApplyFilters }) {
     "women's clothing",
   ];
   return (
-    <>
-      <fieldset>
-        {categories.map((category, index) => {
-          return (
-            <label htmlFor={category} key={index}>
-              <input
-                type="checkbox"
-                id={category}
-                value={category}
-                onChange={(e) => handleFilter(e)}
-              />
-              {category}
-            </label>
-          );
-        })}
-        <button onClick={handleApplyFilters}>Apply Filters</button>
-      </fieldset>
-    </>
+    <div>
+      {categories.map((category, index) => {
+        return (
+          <label htmlFor={category} key={index}>
+            <input
+              type="checkbox"
+              id={category}
+              value={category}
+              onChange={(e) => handleFilter(e)}
+            />
+            {category}
+          </label>
+        );
+      })}
+      <button onClick={handleApplyFilters}>Apply Filters</button>
+    </div>
   );
 }

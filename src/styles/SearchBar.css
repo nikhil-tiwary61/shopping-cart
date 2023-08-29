@@ -1,0 +1,13 @@
+.search-box {
+  width: 21em;
+  height: 2.6em;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 2em;
+  padding-left: 10px;
+}
+@media only screen and (max-width: 320px) {
+  .search-box {
+    width: 15em;
+  }
+}
