@@ -72,6 +72,14 @@ input[type="number"] {
   padding: 2em;
 }
 
+.continue-shopping {
+  background-color: lightgray;
+  border: 2px solid lightgray;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 1em;
+}
+
 .product-page-description {
   margin-bottom: 5em;
 }

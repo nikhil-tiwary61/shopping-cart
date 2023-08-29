@@ -1,4 +1,5 @@
 import "../styles/HomePage.css";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const featuredImage1 =
@@ -10,9 +11,12 @@ export default function HomePage() {
   const featuredImage4 =
     "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg";
   return (
-    <div>
+    <div className="homepage">
       <h1>Welcome to our shop</h1>
       <p>From clothes to accessories, electronics to home decor, we got you!</p>
+      <div id="start-shopping">
+        <Link to="/products">Go to shop &rarr;</Link>
+      </div>
       <div className="categories">
         <div>
           <img src={featuredImage1} alt="Featured Image" />
