@@ -33,6 +33,24 @@ export default function ProductListing() {
     setSearchAll(true);
   }
 
+  //Filter Feature
+  const [filterTags, setFilterTags] = useState([]);
+  function handleFilter(e) {
+    e.target.checked
+      ? setFilterTags([...filterTags, e.target.value])
+      : setFilterTags(
+          filterTags.filter((filterTag) => filterTag !== e.target.value)
+        );
+    filterTags.length > 0 ? setSearchAll(false) : setSearchAll(true);
+    setProcessedProducts(
+      products.filter((product) => {
+        return filterTags.length > 0
+          ? filterTags.every((filtertag) => filtertag == product.category)
+          : products;
+      })
+    );
+  }
+
   return (
     <>
       <h1>Our Products</h1>
@@ -40,6 +58,17 @@ export default function ProductListing() {
         changeProcessedProducts={changeProcessedProducts}
         changeReset={changeReset}
       />
+      <fieldset>
+        <label htmlFor="mens'clothing">
+          <input
+            type="checkbox"
+            id="mens'clothing"
+            value="men's clothing"
+            onChange={(e) => handleFilter(e)}
+          />
+          Men&apos;s Clothing
+        </label>
+      </fieldset>
       <ul className="product-container">
         {searchAll
           ? products.map((product, index) => {
