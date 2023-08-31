@@ -16,11 +16,14 @@ export default function Router() {
 
   function handleClick(product, quantity) {
     if (quantity == 0) toast.info("Quantity not selected");
-    if (quantity > product.rating.count) toast.info("Limited stock available");
-    setCart([...cart, { ...product, quantity: quantity }]);
-    setCartAmount(cartAmount + quantity * product.price);
-    setCartQuantity(cartQuantity + quantity);
-    toast.success("Item added to cart");
+    else if (quantity > product.rating.count)
+      toast.info("Limited stock available");
+    else {
+      setCart([...cart, { ...product, quantity: quantity }]);
+      setCartAmount(cartAmount + quantity * product.price);
+      setCartQuantity(cartQuantity + quantity);
+      toast.success("Item added to cart");
+    }
   }
 
   function handleRemoveFromCart(product) {
