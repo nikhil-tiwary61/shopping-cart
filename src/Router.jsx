@@ -20,6 +20,7 @@ export default function Router() {
     setCart([...cart, { ...product, quantity: quantity }]);
     setCartAmount(cartAmount + quantity * product.price);
     setCartQuantity(cartQuantity + quantity);
+    toast.success("Item added to cart");
   }
 
   function handleRemoveFromCart(product) {
@@ -27,6 +28,7 @@ export default function Router() {
     setCart([...productsLeft]);
     setCartQuantity(cartQuantity - product.quantity);
     setCartAmount(cartAmount - product.quantity * product.price);
+    toast.success("Item removed to cart");
   }
 
   const router = createBrowserRouter([

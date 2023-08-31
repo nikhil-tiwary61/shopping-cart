@@ -1,5 +1,7 @@
 import "../styles/Cart.css";
 import CartItem from "./CartItem";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Cart({
   cart,
@@ -9,9 +11,10 @@ export default function Cart({
 }) {
   return (
     <div className="cart-body">
+      <ToastContainer position="top-right" />
       <div>
-        <h2>Cart Items: {cartQuantity} </h2>
-        <h2>Total Amount: ${cartAmount}</h2>
+        <h2>Items: {cartQuantity} </h2>
+        <h2>Total: ${cartAmount}</h2>
       </div>
       {cart.map((cartItem, index) => {
         return (
