@@ -84,6 +84,15 @@ input[type="number"] {
   margin-bottom: 5em;
 }
 
+button.black-btns {
+  background-color: #1a1a1a;
+  color: white;
+}
+button.black-btns:active {
+  color: green;
+  border-color: green;
+}
+
 @media only screen and (max-width: 426px) {
   .product-page-body {
     width: 90%;

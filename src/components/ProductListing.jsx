@@ -51,13 +51,15 @@ export default function ProductListing() {
     );
   }
 
-  //Filter Feature
-  function handleFilter(e) {
-    e.target.checked
-      ? setFilterTags([...filterTags, e.target.value])
-      : setFilterTags(
-          filterTags.filter((filterTag) => filterTag !== e.target.value)
-        );
+  function handleFilter(selectedCategory) {
+    if (filterTags.includes(selectedCategory)) {
+      let filters = filterTags.filter(
+        (filterTag) => filterTag !== selectedCategory
+      );
+      setFilterTags(filters);
+    } else {
+      setFilterTags([...filterTags, selectedCategory]);
+    }
   }
 
   function applyFilters() {
@@ -77,7 +79,7 @@ export default function ProductListing() {
     <>
       <h1 className="product-page-heading">Our Products</h1>
       <SearchBar handleSearch={handleSearch} searchInput={searchInput} />
-      <FilterBox handleFilter={handleFilter} />
+      <FilterBox handleFilter={handleFilter} filterTags={filterTags} />
       <ul className="product-container">
         {reset
           ? products.map((product, index) => {
