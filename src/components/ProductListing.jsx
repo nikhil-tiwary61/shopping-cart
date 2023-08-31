@@ -18,11 +18,20 @@ export default function ProductListing() {
       .then((response) => setProducts(response));
   }
 
+  //for fetching data
   useEffect(() => {
     fetchData();
+  }, []);
+
+  //for applying filters
+  useEffect(() => {
     applyFilters();
+  }, [filterTags]);
+
+  //for searchbar
+  useEffect(() => {
     searchProducts(searchInput);
-  }, [filterTags, searchInput]);
+  }, [searchInput]);
 
   //Search Bar Feature
   function handleSearch(e) {
