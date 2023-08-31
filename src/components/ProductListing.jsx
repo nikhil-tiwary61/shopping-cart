@@ -7,8 +7,8 @@ import FilterBox from "./FilterBox";
 export default function ProductListing() {
   const url = "https://fakestoreapi.com/products";
   const [products, setProducts] = useState([]);
-  const [processedProducts, setProcessedProducts] = useState([]);
-  const [searchAll, setSearchAll] = useState(true);
+  const [processedProducts, setProcessedProducts] = useState(products);
+  const [reset, setReset] = useState(true);
   const [filterTags, setFilterTags] = useState([]);
 
   function fetchData() {
@@ -19,7 +19,8 @@ export default function ProductListing() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+    applyFilters();
+  }, [filterTags]);
 
   //Search Bar Feature
   function changeProcessedProducts(searchInput) {
@@ -28,11 +29,11 @@ export default function ProductListing() {
         return product.category.match(searchInput);
       })
     );
-    setSearchAll(false);
+    setReset(false);
   }
 
   function changeReset() {
-    setSearchAll(true);
+    setReset(true);
   }
 
   //Filter Feature
@@ -44,15 +45,17 @@ export default function ProductListing() {
         );
   }
 
-  function handleApplyFilters() {
-    filterTags.length > 0 ? setSearchAll(false) : setSearchAll(true);
-    setProcessedProducts(
-      products.filter((product) => {
-        return filterTags.length > 0
-          ? filterTags.every((filtertag) => filtertag == product.category)
-          : products;
-      })
-    );
+  function applyFilters() {
+    filterTags.length > 0 ? setReset(false) : setReset(true);
+    if (filterTags.length > 0) {
+      let tempItems = filterTags.map((filter) => {
+        let temp = products.filter((product) => product.category === filter);
+        return temp;
+      });
+      setProcessedProducts(tempItems.flat());
+    } else {
+      setProcessedProducts([...products]);
+    }
   }
 
   return (
@@ -62,12 +65,9 @@ export default function ProductListing() {
         changeProcessedProducts={changeProcessedProducts}
         changeReset={changeReset}
       />
-      <FilterBox
-        handleFilter={handleFilter}
-        handleApplyFilters={handleApplyFilters}
-      />
+      <FilterBox handleFilter={handleFilter} />
       <ul className="product-container">
-        {searchAll
+        {reset
           ? products.map((product, index) => {
               return <ProductCard key={index} product={product} />;
             })

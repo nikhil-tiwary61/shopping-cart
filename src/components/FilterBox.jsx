@@ -1,6 +1,6 @@
 import "../styles/FilterBox.css";
 
-export default function FilterBox({ handleFilter, handleApplyFilters }) {
+export default function FilterBox({ handleFilter }) {
   const categories = [
     "men's clothing",
     "jewelery",
@@ -23,7 +23,6 @@ export default function FilterBox({ handleFilter, handleApplyFilters }) {
           </label>
         );
       })}
-      <button onClick={handleApplyFilters}>Apply Filters</button>
     </div>
   );
 }
