@@ -1,6 +1,8 @@
 import "../styles/ProductPage.css";
 import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ProductPage({ handleClick }) {
   const location = useLocation();
@@ -19,6 +21,7 @@ export default function ProductPage({ handleClick }) {
 
   return (
     <div className="product-page">
+      <ToastContainer position="top-right" />
       <div className="product-page-body">
         <div className="product-page-details">
           <div className="product-page-image">

@@ -7,6 +7,7 @@ import ProductPage from "./components/ProductPage";
 import Cart from "./components/Cart";
 import { useState } from "react";
 import ErrorPage from "./components/ErrorPage";
+import { toast } from "react-toastify";
 
 export default function Router() {
   const [cart, setCart] = useState([]);
@@ -14,8 +15,8 @@ export default function Router() {
   const [cartAmount, setCartAmount] = useState(0);
 
   function handleClick(product, quantity) {
-    if (quantity == 0) alert("Quantity not selected");
-    if (quantity > product.rating.count) alert("Limited stock available");
+    if (quantity == 0) toast.info("Quantity not selected");
+    if (quantity > product.rating.count) toast.info("Limited stock available");
     setCart([...cart, { ...product, quantity: quantity }]);
     setCartAmount(cartAmount + quantity * product.price);
     setCartQuantity(cartQuantity + quantity);
