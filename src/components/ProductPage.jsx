@@ -1,9 +1,12 @@
 import "../styles/ProductPage.css";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function ProductPage({ handleClick }) {
+export default function ProductPage({ handleAddToCart }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const { fromProductListing } = location.state;
   let product = fromProductListing.product;
 
@@ -16,9 +19,13 @@ export default function ProductPage({ handleClick }) {
     if (quantity == product.rating.count) return;
     setQuantity(quantity + 1);
   }
+  function goToShop() {
+    navigate("/products");
+  }
 
   return (
     <div className="product-page">
+      <ToastContainer position="top-right" limit={3} autoClose={1000} />
       <div className="product-page-body">
         <div className="product-page-details">
           <div className="product-page-image">
@@ -34,24 +41,37 @@ export default function ProductPage({ handleClick }) {
             </div>
             <div className="add-to-cart-box">
               <div className="quantity">
-                <button onClick={() => handleDecrement(+quantity)}>-</button>
+                <button
+                  className="black-btns"
+                  onClick={() => handleDecrement(+quantity)}
+                >
+                  -
+                </button>
                 <input
                   type="number"
                   min={0}
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
-                <button onClick={() => handleIncrement(+quantity)}>+</button>
+                <button
+                  className="black-btns"
+                  onClick={() => handleIncrement(+quantity)}
+                >
+                  +
+                </button>
               </div>
               <div className="add-to-cart-button-box">
-                <button onClick={() => handleClick(product, +quantity)}>
+                <button
+                  className="black-btns"
+                  onClick={() => handleAddToCart(product, +quantity)}
+                >
                   Add to cart
                 </button>
               </div>
             </div>
-            <div className="continue-shopping">
-              <Link to="/products">Continue Shopping</Link>
-            </div>
+            <button className="continue-shopping" onClick={goToShop}>
+              Continue Shopping &rarr;
+            </button>
           </div>
         </div>
         <hr />

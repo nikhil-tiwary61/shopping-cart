@@ -1,6 +1,6 @@
 import "../styles/FilterBox.css";
 
-export default function FilterBox({ handleFilter, handleApplyFilters }) {
+export default function FilterBox({ handleFilter, filterTags }) {
   const categories = [
     "men's clothing",
     "jewelery",
@@ -11,19 +11,15 @@ export default function FilterBox({ handleFilter, handleApplyFilters }) {
     <div className="filter-box">
       {categories.map((category, index) => {
         return (
-          <label htmlFor={category} key={index}>
-            <input
-              type="checkbox"
-              id={category}
-              value={category}
-              className="checkbox"
-              onChange={(e) => handleFilter(e)}
-            />
+          <button
+            key={index}
+            className={filterTags.includes(category) ? "active" : ""}
+            onClick={() => handleFilter(category)}
+          >
             {category}
-          </label>
+          </button>
         );
       })}
-      <button onClick={handleApplyFilters}>Apply Filters</button>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import App from "./App";
 import HomePage from "./components/HomePage";
 import About from "./components/About";
 import ProductListing from "./components/ProductListing";
 import ProductPage from "./components/ProductPage";
 import Cart from "./components/Cart";
-import { useState } from "react";
 import ErrorPage from "./components/ErrorPage";
 
 export default function Router() {
@@ -13,12 +14,24 @@ export default function Router() {
   const [cartQuantity, setCartQuantity] = useState(0);
   const [cartAmount, setCartAmount] = useState(0);
 
-  function handleClick(product, quantity) {
-    if (quantity == 0) alert("Quantity not selected");
-    if (quantity > product.rating.count) alert("Limited stock available");
-    setCart([...cart, { ...product, quantity: quantity }]);
-    setCartAmount(cartAmount + quantity * product.price);
-    setCartQuantity(cartQuantity + quantity);
+  function handleAddToCart(product, quantity) {
+    if (quantity == 0) toast.info("Quantity not selected");
+    else if (quantity > product.rating.count)
+      toast.info("Limited stock available");
+    else {
+      let productPresent = [];
+      productPresent = cart.find((item) => item.id == product.id);
+      if (productPresent == null) {
+        setCart([...cart, { ...product, quantity: quantity }]);
+      } else {
+        let productsLeft = cart.filter((item) => item.id !== product.id);
+        productPresent.quantity += quantity;
+        setCart([...productsLeft, productPresent]);
+      }
+      setCartAmount(cartAmount + quantity * product.price);
+      setCartQuantity(cartQuantity + quantity);
+      toast.success("Item added to cart");
+    }
   }
 
   function handleRemoveFromCart(product) {
@@ -26,6 +39,7 @@ export default function Router() {
     setCart([...productsLeft]);
     setCartQuantity(cartQuantity - product.quantity);
     setCartAmount(cartAmount - product.quantity * product.price);
+    toast.success("Item removed to cart");
   }
 
   const router = createBrowserRouter([
@@ -50,7 +64,7 @@ export default function Router() {
         },
         {
           path: "/products/productpage/:id",
-          element: <ProductPage handleClick={handleClick} />,
+          element: <ProductPage handleAddToCart={handleAddToCart} />,
         },
       ],
     },

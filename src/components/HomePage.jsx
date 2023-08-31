@@ -1,5 +1,5 @@
 import "../styles/HomePage.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const featuredImage1 =
@@ -10,12 +10,20 @@ export default function HomePage() {
     "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg";
   const featuredImage4 =
     "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg";
+
+  const navigate = useNavigate();
+  function goToShop() {
+    navigate("/products");
+  }
+
   return (
     <div className="homepage">
       <h1>Welcome to our shop</h1>
       <p>From clothes to accessories, electronics to home decor, we got you!</p>
       <div id="start-shopping">
-        <Link to="/products">Go to shop &rarr;</Link>
+        <button className="black-btns" onClick={goToShop}>
+          go to shop &rarr;
+        </button>
       </div>
       <div className="categories">
         <div>

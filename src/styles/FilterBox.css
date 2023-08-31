@@ -15,3 +15,8 @@ input.checkbox {
 .filter-box > label {
   font-size: 1.2em;
 }
+
+button.active {
+  background-color: #1a1a1a;
+  color: white;
+}
