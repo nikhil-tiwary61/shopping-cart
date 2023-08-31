@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function ProductPage({ handleClick }) {
+export default function ProductPage({ handleAddToCart }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { fromProductListing } = location.state;
@@ -63,7 +63,7 @@ export default function ProductPage({ handleClick }) {
               <div className="add-to-cart-button-box">
                 <button
                   className="black-btns"
-                  onClick={() => handleClick(product, +quantity)}
+                  onClick={() => handleAddToCart(product, +quantity)}
                 >
                   Add to cart
                 </button>

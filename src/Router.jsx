@@ -14,12 +14,20 @@ export default function Router() {
   const [cartQuantity, setCartQuantity] = useState(0);
   const [cartAmount, setCartAmount] = useState(0);
 
-  function handleClick(product, quantity) {
+  function handleAddToCart(product, quantity) {
     if (quantity == 0) toast.info("Quantity not selected");
     else if (quantity > product.rating.count)
       toast.info("Limited stock available");
     else {
-      setCart([...cart, { ...product, quantity: quantity }]);
+      let productPresent = [];
+      productPresent = cart.find((item) => item.id == product.id);
+      if (productPresent == null) {
+        setCart([...cart, { ...product, quantity: quantity }]);
+      } else {
+        let productsLeft = cart.filter((item) => item.id !== product.id);
+        productPresent.quantity += quantity;
+        setCart([...productsLeft, productPresent]);
+      }
       setCartAmount(cartAmount + quantity * product.price);
       setCartQuantity(cartQuantity + quantity);
       toast.success("Item added to cart");
@@ -56,7 +64,7 @@ export default function Router() {
         },
         {
           path: "/products/productpage/:id",
-          element: <ProductPage handleClick={handleClick} />,
+          element: <ProductPage handleAddToCart={handleAddToCart} />,
         },
       ],
     },

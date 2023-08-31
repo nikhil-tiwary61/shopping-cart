@@ -51,6 +51,7 @@ export default function ProductListing() {
     );
   }
 
+  //Filter feature
   function handleFilter(selectedCategory) {
     if (filterTags.includes(selectedCategory)) {
       let filters = filterTags.filter(
