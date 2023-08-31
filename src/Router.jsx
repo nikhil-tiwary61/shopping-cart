@@ -1,13 +1,13 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import App from "./App";
 import HomePage from "./components/HomePage";
 import About from "./components/About";
 import ProductListing from "./components/ProductListing";
 import ProductPage from "./components/ProductPage";
 import Cart from "./components/Cart";
-import { useState } from "react";
 import ErrorPage from "./components/ErrorPage";
-import { toast } from "react-toastify";
 
 export default function Router() {
   const [cart, setCart] = useState([]);

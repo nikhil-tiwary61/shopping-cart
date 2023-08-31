@@ -1,11 +1,12 @@
 import "../styles/ProductPage.css";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ProductPage({ handleClick }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const { fromProductListing } = location.state;
   let product = fromProductListing.product;
 
@@ -17,6 +18,9 @@ export default function ProductPage({ handleClick }) {
   function handleIncrement() {
     if (quantity == product.rating.count) return;
     setQuantity(quantity + 1);
+  }
+  function goToShop() {
+    navigate("/products");
   }
 
   return (
@@ -65,9 +69,9 @@ export default function ProductPage({ handleClick }) {
                 </button>
               </div>
             </div>
-            <div className="continue-shopping">
-              <Link to="/products">Continue Shopping</Link>
-            </div>
+            <button className="continue-shopping" onClick={goToShop}>
+              Continue Shopping &rarr;
+            </button>
           </div>
         </div>
         <hr />
