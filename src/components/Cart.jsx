@@ -11,7 +11,7 @@ export default function Cart({
 }) {
   return (
     <div className="cart-body">
-      <ToastContainer position="top-right" />
+      <ToastContainer position="top-right" limit={3} autoClose={1000} />
       <div>
         <h2>Items: {cartQuantity} </h2>
         <h2>Total: ${cartAmount}</h2>

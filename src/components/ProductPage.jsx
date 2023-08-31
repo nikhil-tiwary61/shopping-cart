@@ -25,7 +25,7 @@ export default function ProductPage({ handleAddToCart }) {
 
   return (
     <div className="product-page">
-      <ToastContainer position="top-right" />
+      <ToastContainer position="top-right" limit={3} autoClose={1000} />
       <div className="product-page-body">
         <div className="product-page-details">
           <div className="product-page-image">
