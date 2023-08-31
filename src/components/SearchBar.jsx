@@ -1,16 +1,6 @@
 import "../styles/SearchBar.css";
-import { useState } from "react";
 
-export default function SearchBar({ changeProcessedProducts, changeReset }) {
-  const [searchInput, setSearchInput] = useState("");
-
-  function handleChange(e) {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-    if (searchInput.length > 0) {
-      changeProcessedProducts(searchInput);
-    }
-  }
+export default function SearchBar({ handleSearch, searchInput }) {
   return (
     <>
       <input
@@ -18,9 +8,8 @@ export default function SearchBar({ changeProcessedProducts, changeReset }) {
         value={searchInput}
         placeholder="Search"
         className="search-box"
-        onChange={(e) => handleChange(e)}
+        onChange={(e) => handleSearch(e)}
       />
-      <button onClick={changeReset}>Reset</button>
     </>
   );
 }

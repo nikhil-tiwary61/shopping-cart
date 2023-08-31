@@ -10,6 +10,7 @@ export default function ProductListing() {
   const [processedProducts, setProcessedProducts] = useState(products);
   const [reset, setReset] = useState(true);
   const [filterTags, setFilterTags] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   function fetchData() {
     return fetch(url)
@@ -20,20 +21,25 @@ export default function ProductListing() {
   useEffect(() => {
     fetchData();
     applyFilters();
-  }, [filterTags]);
+    searchProducts(searchInput);
+  }, [filterTags, searchInput]);
 
   //Search Bar Feature
-  function changeProcessedProducts(searchInput) {
-    setProcessedProducts(
-      products.filter((product) => {
-        return product.category.match(searchInput);
-      })
-    );
-    setReset(false);
+  function handleSearch(e) {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+    if (searchInput.length > 0) {
+      searchProducts(searchInput);
+    }
   }
 
-  function changeReset() {
-    setReset(true);
+  function searchProducts(searchInput) {
+    searchInput.length > 0 ? setReset(false) : setReset(true);
+    setProcessedProducts(
+      products.filter((product) => {
+        return product.title.match(searchInput);
+      })
+    );
   }
 
   //Filter Feature
@@ -61,10 +67,7 @@ export default function ProductListing() {
   return (
     <>
       <h1 className="product-page-heading">Our Products</h1>
-      <SearchBar
-        changeProcessedProducts={changeProcessedProducts}
-        changeReset={changeReset}
-      />
+      <SearchBar handleSearch={handleSearch} searchInput={searchInput} />
       <FilterBox handleFilter={handleFilter} />
       <ul className="product-container">
         {reset
