@@ -36,9 +36,7 @@ export default function ProductPage({ handleAddToCart }) {
               <b>{product.title}</b>
             </h3>
             <div className="text-align-left">${product.price}</div>
-            <div className="text-align-left">
-              Rating: {product.rating.rate} Star
-            </div>
+            <div className="text-align-left">&#9733; {product.rating.rate}</div>
             <div className="add-to-cart-box">
               <div className="quantity">
                 <button
