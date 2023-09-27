@@ -18,8 +18,8 @@ export default function Cart({
   return (
     <section className="cart-body">
       <ToastContainer position="top-right" limit={3} autoClose={1000} />
-      <div className="cart-details">
-        {cartQuantity ? (
+      {cartQuantity ? (
+        <div className="cart-details">
           <div className="cart-items">
             <div>
               <span>CART</span>
@@ -35,32 +35,34 @@ export default function Cart({
               );
             })}
           </div>
-        ) : (
-          <></>
-        )}
-
-        <div className="bill">
-          <h2>Order Summary</h2>
-          <div className="price-list">
-            <div className="row">
-              <span>Items: {cartQuantity}</span>
-              <span>${cartAmount}</span>
+          <div className="bill">
+            <h2>Order Summary</h2>
+            <div className="price-list">
+              <div className="row">
+                <span>Items: {cartQuantity}</span>
+                <span>${cartAmount}</span>
+              </div>
+              <div className="row">
+                <span>SHIPPING</span>
+                <span>${0}</span>
+              </div>
             </div>
-            <div className="row">
-              <span>SHIPPING</span>
-              <span>${0}</span>
+            <div>
+              <div className="row">
+                <span>TOTAL COST</span>
+                <span>${cartAmount}</span>
+              </div>
+              <button>CHECKOUT</button>
+              <button onClick={goToShop}>Continue Shopping &rarr;</button>
             </div>
-          </div>
-          <div>
-            <div className="row">
-              <span>TOTAL COST</span>
-              <span>${cartAmount}</span>
-            </div>
-            <button>CHECKOUT</button>
-            <button onClick={goToShop}>Continue Shopping &rarr;</button>
           </div>
         </div>
-      </div>
+      ) : (
+        <div>
+          <h1>Your cart is empty!</h1>
+          <button onClick={goToShop}>Continue Shopping &rarr;</button>
+        </div>
+      )}
     </section>
   );
 }
