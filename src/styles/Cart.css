@@ -5,6 +5,36 @@
   gap: 1em;
 }
 
+.cart-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.bill {
+  background: #e2dddd;
+  padding: 2em;
+  /* flex-grow: 1; */
+  width: 15em;
+}
+h2 {
+  margin-bottom: 1em;
+}
+.price-list {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 1em 0 1em 0;
+  margin-bottom: 1em;
+}
+.bill > div > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-items {
+  /* flex-grow: 2; */
+  width: 40em;
+}
+
 @media only screen and (max-width: 426px) {
   .cart-body {
     padding: 3px;
