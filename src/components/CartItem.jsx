@@ -12,7 +12,7 @@ export default function CartItem({ cartItem, handleRemoveFromCart }) {
       </div>
       <div className="cart-item-details">
         <h3 className="truncate">{cartItem.title}</h3>
-        <p className="truncate">${cartItem.price}</p>
+        <p className="truncate">${cartItem.price * cartItem.quantity}</p>
         <p className="truncate">Quantity: {cartItem.quantity}</p>
       </div>
       <button onClick={() => handleRemoveFromCart(cartItem)}>
