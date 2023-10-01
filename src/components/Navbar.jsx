@@ -1,19 +1,22 @@
-import { Link } from "react-router-dom";
-import "../styles/Navbar.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../styles/Navbar.css";
 
 export default function Navbar({ cartQuantity }) {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
 
   function handleClick() {
     setVisible(!visible);
   }
 
+  function goToHomePage() {
+    navigate("/");
+  }
+
   return (
     <header>
-      <div>
-        <Link to="/">Shopping Cart App</Link>
-      </div>
+      <img src="/banner.png" alt="Banner" onClick={goToHomePage} />
       <nav>
         <ul className="route-links desktop-menu">
           <li>

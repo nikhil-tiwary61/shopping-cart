@@ -1,13 +1,12 @@
 header {
   width: 100%;
+  height: 4em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 2em;
 }
 
-header > div,
 .route-links,
 nav {
   display: flex;
@@ -15,6 +14,11 @@ nav {
   align-items: center;
   gap: 1em;
   margin: 1em;
+}
+
+header > img {
+  object-fit: contain;
+  height: 4em;
 }
 
 ul {
