@@ -8,7 +8,8 @@ header {
 }
 
 header > div,
-.route-links {
+.route-links,
+nav {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +21,23 @@ ul {
   list-style: none;
 }
 
-ul > button {
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 1em;
+  top: 4em;
+  background-color: whitesmoke;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+.mobile-menu > li {
+  background: white;
+  width: -webkit-fill-available;
+}
+
+.mobile-menu-btn {
   display: none;
 }
 
@@ -33,7 +50,11 @@ ul > button {
 }
 
 @media only screen and (max-width: 543px) {
-  ul > button {
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu-btn {
     width: 2.5em;
     height: 2.5em;
     display: flex;
@@ -41,13 +62,8 @@ ul > button {
     align-items: center;
   }
 
-  ul > button > img {
+  button > img {
     object-fit: contain;
     width: 1.8em;
-  }
-}
-@media only screen and (max-width: 426px) {
-  header {
-    flex-direction: column;
   }
 }
