@@ -23,6 +23,9 @@ export default function Navbar({ cartQuantity }) {
               Cart <span className="cart-quantity">{cartQuantity}</span>
             </Link>
           </li>
+          <button>
+            <img src="/hamburgerMenu.png" alt="Hamburger Menu" />
+          </button>
         </ul>
       </nav>
     </header>
