@@ -1,6 +1,7 @@
 .product-page {
   display: flex;
   justify-content: center;
+  margin-top: 2em;
 }
 .product-page-body {
   display: flex;
