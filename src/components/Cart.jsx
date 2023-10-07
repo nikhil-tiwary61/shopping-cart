@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Cart({ cart, cartDetails, handleRemoveFromCart }) {
+export default function Cart({ cart, cartDetails, RemoveFromCart }) {
   const navigate = useNavigate();
 
   function goToShop() {
@@ -25,7 +25,7 @@ export default function Cart({ cart, cartDetails, handleRemoveFromCart }) {
                 <CartItem
                   cartItem={cartItem}
                   key={index}
-                  handleRemoveFromCart={handleRemoveFromCart}
+                  RemoveFromCart={RemoveFromCart}
                 />
               );
             })}

@@ -16,7 +16,7 @@ export default function Router() {
     cartAmount: 0,
   });
 
-  function handleAddToCart(product, quantity) {
+  function AddToCart(product, quantity) {
     if (quantity == 0) toast.info("Quantity not selected");
     else if (quantity > product.rating.count)
       toast.info("Limited stock available");
@@ -27,8 +27,8 @@ export default function Router() {
         setCart([...cart, { ...product, quantity: quantity }]);
       } else {
         let productsLeft = cart.filter((item) => item.id !== product.id);
-        // productPresent.quantity += quantity;
-        setCart([...productsLeft, (productPresent.quantity += quantity)]);
+        productPresent.quantity += quantity;
+        setCart([...productsLeft, productPresent]);
       }
       setCartDetails({
         cartQuantity: cartDetails.cartQuantity + quantity,
@@ -38,7 +38,7 @@ export default function Router() {
     }
   }
 
-  function handleRemoveFromCart(product) {
+  function RemoveFromCart(product) {
     let productsLeft = cart.filter((cartItem) => cartItem.id != product.id);
     setCart([...productsLeft]);
     setCartDetails({
@@ -62,16 +62,14 @@ export default function Router() {
           element: (
             <Cart
               cart={cart}
-              // cartQuantity={cartQuantity}
-              // cartAmount={cartAmount}
               cartDetails={cartDetails}
-              handleRemoveFromCart={handleRemoveFromCart}
+              RemoveFromCart={RemoveFromCart}
             />
           ),
         },
         {
           path: "/products/productpage/:id",
-          element: <ProductPage handleAddToCart={handleAddToCart} />,
+          element: <ProductPage AddToCart={AddToCart} />,
         },
       ],
     },
