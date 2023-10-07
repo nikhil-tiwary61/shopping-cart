@@ -2,10 +2,10 @@ import "./App.css";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-function App({ cartQuantity }) {
+function App({ cartDetails }) {
   return (
     <>
-      <Navbar cartQuantity={cartQuantity} />
+      <Navbar cartDetails={cartDetails} />
       <Outlet />
     </>
   );

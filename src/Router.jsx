@@ -11,8 +11,10 @@ import ErrorPage from "./components/ErrorPage";
 
 export default function Router() {
   const [cart, setCart] = useState([]);
-  const [cartQuantity, setCartQuantity] = useState(0);
-  const [cartAmount, setCartAmount] = useState(0);
+  const [cartDetails, setCartDetails] = useState({
+    cartQuantity: 0,
+    cartAmount: 0,
+  });
 
   function handleAddToCart(product, quantity) {
     if (quantity == 0) toast.info("Quantity not selected");
@@ -25,11 +27,13 @@ export default function Router() {
         setCart([...cart, { ...product, quantity: quantity }]);
       } else {
         let productsLeft = cart.filter((item) => item.id !== product.id);
-        productPresent.quantity += quantity;
-        setCart([...productsLeft, productPresent]);
+        // productPresent.quantity += quantity;
+        setCart([...productsLeft, (productPresent.quantity += quantity)]);
       }
-      setCartAmount(cartAmount + quantity * product.price);
-      setCartQuantity(cartQuantity + quantity);
+      setCartDetails({
+        cartQuantity: cartDetails.cartQuantity + quantity,
+        cartAmount: cartDetails.cartAmount + quantity * product.price,
+      });
       toast.success("Item added to cart");
     }
   }
@@ -37,15 +41,17 @@ export default function Router() {
   function handleRemoveFromCart(product) {
     let productsLeft = cart.filter((cartItem) => cartItem.id != product.id);
     setCart([...productsLeft]);
-    setCartQuantity(cartQuantity - product.quantity);
-    setCartAmount(cartAmount - product.quantity * product.price);
+    setCartDetails({
+      cartQuantity: cartDetails.cartQuantity - product.quantity,
+      cartAmount: cartDetails.cartAmount - product.quantity * product.price,
+    });
     toast.success("Item removed to cart");
   }
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App cartQuantity={cartQuantity} />,
+      element: <App cartDetails={cartDetails} />,
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <HomePage /> },
@@ -56,8 +62,9 @@ export default function Router() {
           element: (
             <Cart
               cart={cart}
-              cartQuantity={cartQuantity}
-              cartAmount={cartAmount}
+              // cartQuantity={cartQuantity}
+              // cartAmount={cartAmount}
+              cartDetails={cartDetails}
               handleRemoveFromCart={handleRemoveFromCart}
             />
           ),
