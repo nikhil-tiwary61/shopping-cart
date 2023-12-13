@@ -80,10 +80,10 @@ export default function ProductListing() {
   }
 
   function searchProducts(searchInput) {
-    state.searchInput.length > 0 ? toggleReset(false) : toggleReset(true);
+    toggleReset(state.searchInput.length > 0 ? false : true);
     changeProcessedProducts(
       state.products.filter((product) => {
-        return product.title.match(searchInput);
+        return product.title.toLowerCase().includes(searchInput.toLowerCase());
       })
     );
   }
