@@ -29,99 +29,87 @@ const reducer = (state, action) => {
   }
 };
 
+const updateProcessedProducts = (state, searchInput) => {
+  const processedProducts = state.products.filter((product) =>
+    product.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+  return processedProducts;
+};
+
 export default function ProductListing() {
   const url = "https://fakestoreapi.com/products";
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { reset, searchInput, filterTags } = state;
 
-  function fetchData() {
-    return fetch(url)
-      .then((response) => response.json())
-      .then((response) => changeProducts(response));
-  }
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      dispatch({ type: "CHANGE_PRODUCTS", payload: data });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   //for fetching data
   useEffect(() => {
     fetchData();
   }, []);
 
-  //for applying filters
+  //for changing processed products
   useEffect(() => {
+    const applyFilters = () => {
+      let processedProducts = [...state.products];
+
+      if (state.filterTags.length > 0) {
+        processedProducts = state.products.filter((product) =>
+          state.filterTags.includes(product.category)
+        );
+      }
+
+      dispatch({
+        type: "CHANGE_PROCESSED_PRODUCTS",
+        payload: processedProducts,
+      });
+      dispatch({
+        type: "TOGGLE_RESET",
+        payload: processedProducts.length === 0,
+      });
+    };
+
     applyFilters();
-  }, [state.filterTags]);
-
-  //for searchbar
-  useEffect(() => {
-    searchProducts(state.searchInput);
-  }, [state.searchInput]);
-
-  function toggleReset(boolean) {
-    dispatch({ type: "TOGGLE_RESET", payload: boolean });
-  }
-  function changeSearchInput(val) {
-    dispatch({ type: "CHANGE_SEARCH_INPUT", payload: val });
-  }
-  function changeFilterTags(tags) {
-    dispatch({ type: "CHANGE_FILTER_TAGS", payload: tags });
-  }
-  function changeProducts(val) {
-    dispatch({ type: "CHANGE_PRODUCTS", payload: val });
-  }
-  function changeProcessedProducts(val) {
-    dispatch({ type: "CHANGE_PROCESSED_PRODUCTS", payload: val });
-  }
+  }, [state.filterTags, state.products]);
 
   //Search Bar Feature
-  function handleSearch(e) {
-    e.preventDefault();
-    changeSearchInput(e.target.value);
-    if (state.searchInput.length > 0) {
-      searchProducts(state.searchInput);
-    }
-  }
-
-  function searchProducts(searchInput) {
-    toggleReset(state.searchInput.length > 0 ? false : true);
-    changeProcessedProducts(
-      state.products.filter((product) => {
-        return product.title.toLowerCase().includes(searchInput.toLowerCase());
-      })
-    );
-  }
+  const handleSearch = (e) => {
+    const input = e.target.value;
+    dispatch({ type: "CHANGE_SEARCH_INPUT", payload: input });
+    dispatch({
+      type: "CHANGE_PROCESSED_PRODUCTS",
+      payload: updateProcessedProducts(state, input),
+    });
+    dispatch({
+      type: "TOGGLE_RESET",
+      payload: input.length > 0 ? false : true,
+    });
+  };
 
   //Filter feature
-  function handleFilter(selectedCategory) {
-    if (state.filterTags.includes(selectedCategory)) {
-      let filters = state.filterTags.filter(
-        (filterTag) => filterTag !== selectedCategory
-      );
-      changeFilterTags(filters);
-    } else {
-      changeFilterTags([...state.filterTags, selectedCategory]);
-    }
-  }
+  const handleFilter = (selectedCategory) => {
+    const updatedFilters = filterTags.includes(selectedCategory)
+      ? filterTags.filter((filterTag) => filterTag !== selectedCategory)
+      : [...filterTags, selectedCategory];
 
-  function applyFilters() {
-    state.filterTags.length > 0 ? toggleReset(false) : toggleReset(true);
-    if (state.filterTags.length > 0) {
-      let tempItems = state.filterTags.map((filter) => {
-        let temp = state.products.filter(
-          (product) => product.category === filter
-        );
-        return temp;
-      });
-      changeProcessedProducts(tempItems.flat());
-    } else {
-      changeProcessedProducts([...state.products]);
-    }
-  }
+    dispatch({ type: "CHANGE_FILTER_TAGS", payload: updatedFilters });
+  };
 
   return (
     <>
       <h1 className="product-page-heading">Our Products</h1>
-      <SearchBar handleSearch={handleSearch} searchInput={state.searchInput} />
-      <FilterBox handleFilter={handleFilter} filterTags={state.filterTags} />
+      <SearchBar handleSearch={handleSearch} searchInput={searchInput} />
+      <FilterBox handleFilter={handleFilter} filterTags={filterTags} />
       <ul className="product-container">
-        {state.reset
+        {reset
           ? state.products.map((product, index) => {
               return <ProductCard key={index} product={product} />;
             })
