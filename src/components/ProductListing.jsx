@@ -1,21 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import ProductCard from "./ProductCard";
 import "../styles/ProductListing.css";
 import SearchBar from "./SearchBar";
 import FilterBox from "./FilterBox";
 
+const initialState = {
+  reset: true,
+  searchInput: "",
+  filterTags: [],
+  products: [],
+  processedProducts: [],
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "TOGGLE_RESET":
+      return { ...state, reset: action.payload };
+    case "CHANGE_SEARCH_INPUT":
+      return { ...state, searchInput: action.payload };
+    case "CHANGE_FILTER_TAGS":
+      return { ...state, filterTags: action.payload };
+    case "CHANGE_PRODUCTS":
+      return { ...state, products: action.payload };
+    case "CHANGE_PROCESSED_PRODUCTS":
+      return { ...state, processedProducts: action.payload };
+    default:
+      return state;
+  }
+};
+
 export default function ProductListing() {
   const url = "https://fakestoreapi.com/products";
-  const [products, setProducts] = useState([]);
-  const [processedProducts, setProcessedProducts] = useState(products);
-  const [reset, setReset] = useState(true);
-  const [filterTags, setFilterTags] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   function fetchData() {
     return fetch(url)
       .then((response) => response.json())
-      .then((response) => setProducts(response));
+      .then((response) => changeProducts(response));
   }
 
   //for fetching data
@@ -26,26 +47,42 @@ export default function ProductListing() {
   //for applying filters
   useEffect(() => {
     applyFilters();
-  }, [filterTags]);
+  }, [state.filterTags]);
 
   //for searchbar
   useEffect(() => {
-    searchProducts(searchInput);
-  }, [searchInput]);
+    searchProducts(state.searchInput);
+  }, [state.searchInput]);
+
+  function toggleReset(boolean) {
+    dispatch({ type: "TOGGLE_RESET", payload: boolean });
+  }
+  function changeSearchInput(val) {
+    dispatch({ type: "CHANGE_SEARCH_INPUT", payload: val });
+  }
+  function changeFilterTags(tags) {
+    dispatch({ type: "CHANGE_FILTER_TAGS", payload: tags });
+  }
+  function changeProducts(val) {
+    dispatch({ type: "CHANGE_PRODUCTS", payload: val });
+  }
+  function changeProcessedProducts(val) {
+    dispatch({ type: "CHANGE_PROCESSED_PRODUCTS", payload: val });
+  }
 
   //Search Bar Feature
   function handleSearch(e) {
     e.preventDefault();
-    setSearchInput(e.target.value);
-    if (searchInput.length > 0) {
-      searchProducts(searchInput);
+    changeSearchInput(e.target.value);
+    if (state.searchInput.length > 0) {
+      searchProducts(state.searchInput);
     }
   }
 
   function searchProducts(searchInput) {
-    searchInput.length > 0 ? setReset(false) : setReset(true);
-    setProcessedProducts(
-      products.filter((product) => {
+    state.searchInput.length > 0 ? toggleReset(false) : toggleReset(true);
+    changeProcessedProducts(
+      state.products.filter((product) => {
         return product.title.match(searchInput);
       })
     );
@@ -53,40 +90,42 @@ export default function ProductListing() {
 
   //Filter feature
   function handleFilter(selectedCategory) {
-    if (filterTags.includes(selectedCategory)) {
-      let filters = filterTags.filter(
+    if (state.filterTags.includes(selectedCategory)) {
+      let filters = state.filterTags.filter(
         (filterTag) => filterTag !== selectedCategory
       );
-      setFilterTags(filters);
+      changeFilterTags(filters);
     } else {
-      setFilterTags([...filterTags, selectedCategory]);
+      changeFilterTags([...state.filterTags, selectedCategory]);
     }
   }
 
   function applyFilters() {
-    filterTags.length > 0 ? setReset(false) : setReset(true);
-    if (filterTags.length > 0) {
-      let tempItems = filterTags.map((filter) => {
-        let temp = products.filter((product) => product.category === filter);
+    state.filterTags.length > 0 ? toggleReset(false) : toggleReset(true);
+    if (state.filterTags.length > 0) {
+      let tempItems = state.filterTags.map((filter) => {
+        let temp = state.products.filter(
+          (product) => product.category === filter
+        );
         return temp;
       });
-      setProcessedProducts(tempItems.flat());
+      changeProcessedProducts(tempItems.flat());
     } else {
-      setProcessedProducts([...products]);
+      changeProcessedProducts([...state.products]);
     }
   }
 
   return (
     <>
       <h1 className="product-page-heading">Our Products</h1>
-      <SearchBar handleSearch={handleSearch} searchInput={searchInput} />
-      <FilterBox handleFilter={handleFilter} filterTags={filterTags} />
+      <SearchBar handleSearch={handleSearch} searchInput={state.searchInput} />
+      <FilterBox handleFilter={handleFilter} filterTags={state.filterTags} />
       <ul className="product-container">
-        {reset
-          ? products.map((product, index) => {
+        {state.reset
+          ? state.products.map((product, index) => {
               return <ProductCard key={index} product={product} />;
             })
-          : processedProducts.map((product, index) => {
+          : state.processedProducts.map((product, index) => {
               return <ProductCard key={index} product={product} />;
             })}
       </ul>
