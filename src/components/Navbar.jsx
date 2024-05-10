@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../styles/Navbar.css";
 
 export default function Navbar({ cartDetails }) {
+  const { cartQuantity } = cartDetails;
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -30,8 +31,7 @@ export default function Navbar({ cartDetails }) {
           </li>
           <li>
             <Link to="cart">
-              Cart{" "}
-              <span className="cart-quantity">{cartDetails.cartQuantity}</span>
+              Cart <span className="cart-quantity">{cartQuantity}</span>
             </Link>
           </li>
         </ul>
@@ -56,8 +56,7 @@ export default function Navbar({ cartDetails }) {
           </li>
           <li onClick={() => setVisible(false)}>
             <Link to="cart">
-              Cart{" "}
-              <span className="cart-quantity">{cartDetails.cartQuantity}</span>
+              Cart <span className="cart-quantity">{cartQuantity}</span>
             </Link>
           </li>
         </ul>
