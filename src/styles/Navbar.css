@@ -45,14 +45,6 @@ ul {
   display: none;
 }
 
-.cart-quantity {
-  display: inline-block;
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  width: 1.5em;
-}
-
 @media only screen and (max-width: 543px) {
   .desktop-menu {
     display: none;

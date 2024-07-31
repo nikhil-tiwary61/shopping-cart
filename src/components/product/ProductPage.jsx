@@ -1,4 +1,4 @@
-import "../styles/ProductPage.css";
+import "../../styles/ProductPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";

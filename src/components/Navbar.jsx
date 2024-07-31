@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../styles/Navbar.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 export default function Navbar({ cartDetails }) {
   const { cartQuantity } = cartDetails;
@@ -30,8 +32,9 @@ export default function Navbar({ cartDetails }) {
             <Link to="products">Products</Link>
           </li>
           <li>
-            <Link to="cart">
-              Cart <span className="cart-quantity">{cartQuantity}</span>
+            <Link to="cart" className="position-relative">
+            <FontAwesomeIcon icon={faCartShopping} />
+              Cart <span className="position-absolute translate-middle badge rounded-pill bg-danger">{cartQuantity}</span>
             </Link>
           </li>
         </ul>
@@ -42,21 +45,22 @@ export default function Navbar({ cartDetails }) {
           onClick={handleClick}
         />
         <ul
-          className="route-links mobile-menu"
+          className="list-group mobile-menu position-absolute"
           style={{ display: visible ? "flex" : "none" }}
         >
-          <li onClick={() => setVisible(false)}>
+          <li className="list-group-item" onClick={() => setVisible(false)}>
             <Link to="/">Home</Link>
           </li>
-          <li onClick={() => setVisible(false)}>
+          <li className="list-group-item" onClick={() => setVisible(false)}>
             <Link to="/about">About</Link>
           </li>
-          <li onClick={() => setVisible(false)}>
+          <li className="list-group-item" onClick={() => setVisible(false)}>
             <Link to="products">Products</Link>
           </li>
-          <li onClick={() => setVisible(false)}>
-            <Link to="cart">
-              Cart <span className="cart-quantity">{cartQuantity}</span>
+          <li className="list-group-item" onClick={() => setVisible(false)}>
+          <Link to="cart" className="position-relative">
+            <FontAwesomeIcon icon={faCartShopping} />
+              Cart <span className="position-absolute translate-middle badge rounded-pill bg-danger">{cartQuantity}</span>
             </Link>
           </li>
         </ul>

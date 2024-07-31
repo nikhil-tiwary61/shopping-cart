@@ -1,8 +1,8 @@
 import { useEffect, useReducer } from "react";
 import ProductCard from "./ProductCard";
-import "../styles/ProductListing.css";
-import SearchBar from "./SearchBar";
-import FilterBox from "./FilterBox";
+import "../../styles/ProductListing.css";
+import SearchBar from "../SearchBar";
+import FilterBox from "../FilterBox";
 
 const initialState = {
   reset: true,

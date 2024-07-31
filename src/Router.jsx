@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import App from "./App";
 import HomePage from "./components/HomePage";
 import About from "./components/About";
-import ProductListing from "./components/ProductListing";
-import ProductPage from "./components/ProductPage";
+import ProductListing from "./components/product/ProductListing";
+import ProductPage from "./components/product/ProductPage";
 import Cart from "./components/Cart";
 import ErrorPage from "./components/ErrorPage";
 
