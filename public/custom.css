@@ -19,3 +19,35 @@ footer {
   bottom: 0px;
   /* margin-bottom: 2em; */
 }
+#about {
+  text-align: left;
+  padding: 1em;
+}
+.link {
+  color: blue;
+}
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+  margin: 2em;
+  padding: 2em;
+}
+.product-page-heading {
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+.search-box {
+  width: 21em;
+  height: 2.6em;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 2em;
+  padding-left: 10px;
+}
+@media only screen and (max-width: 376px) {
+  .search-box {
+    width: 15em;
+  }
+}
