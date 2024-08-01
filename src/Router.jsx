@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage";
 import About from "./components/About";
 import ProductListing from "./components/product/ProductListing";
 import ProductPage from "./components/product/ProductPage";
-import Cart from "./components/Cart";
+import Cart from "./components/cart/Cart";
 import ErrorPage from "./components/ErrorPage";
 
 const initialState = {
