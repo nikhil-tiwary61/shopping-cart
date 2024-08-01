@@ -4,18 +4,16 @@
 Welcome to our e-commerce front-end project! This README file will provide you with all the necessary information to get started with the project.
 
 ## ✨Demo✨
-`https://shopping-cart-neon-psi.vercel.app/`
+[shopping-cart](https://shopping-cart-neon-psi.vercel.app/)
 
 ## Overview
 
 This project aims to create a user-friendly front-end interface for an e-commerce website. The website will allow users to browse products, filter through them, add them to their cart, and proceed to checkout.
 
 ## Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
 - React.js
+- Bootstrap
+- CSS
 
 ## Features
 - Product listing page
@@ -46,3 +44,11 @@ npm start
 
 ## Contributing
 We welcome contributions from the community. If you find any bugs or have suggestions for improvement, please open an issue or submit a pull request.
+
+## Screenshots
+
+<img width="946" alt="image" src="https://github.com/user-attachments/assets/96d64765-7180-4f33-b42c-db3c3a7c947b">
+<img width="947" alt="image" src="https://github.com/user-attachments/assets/ddc9fb94-9056-4d6c-b274-970f1e09738e">
+<img width="947" alt="image" src="https://github.com/user-attachments/assets/db3a1c88-6e4b-4b9b-9591-b055b2ebb2d0">
+
+
