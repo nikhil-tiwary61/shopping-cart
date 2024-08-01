@@ -1,4 +1,3 @@
-import "../../styles/About.css";
 import Footer from "./Footer";
 
 export default function About() {
