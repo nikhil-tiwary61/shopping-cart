@@ -1,4 +1,4 @@
-import "../styles/FilterBox.css";
+import "../../styles/FilterBox.css";
 
 export default function FilterBox({ handleFilter, filterTags }) {
   const categories = [
