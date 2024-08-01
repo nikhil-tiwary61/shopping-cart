@@ -2,12 +2,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useReducer } from "react";
 import { toast } from "react-toastify";
 import App from "./App";
-import HomePage from "./components/HomePage";
-import About from "./components/About";
+import HomePage from "./components/misc/HomePage";
+import About from "./components/misc/About";
 import ProductListing from "./components/product/ProductListing";
 import ProductPage from "./components/product/ProductPage";
 import Cart from "./components/cart/Cart";
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./components/misc/ErrorPage";
 
 const initialState = {
   cart: [],
